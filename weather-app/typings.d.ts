@@ -1,3 +1,15 @@
+interface Current {
+    interval: number;
+    temperature_2m: number;
+    time: string;
+}
+
+interface CurrentUnits {
+    interval: string;
+    temperature_2m: string;
+    time: string;
+}
+
 interface Daily {
     temperature_2m_max: [number];
     temperature_2m_min: [number];
@@ -39,6 +51,8 @@ interface HourlyUnits {
 }
 
 interface Root {
+    current: Current
+    current_units: CurrentUnits
     daily: Daily; 
     daily_units: DailyUnits
     elevation: number;

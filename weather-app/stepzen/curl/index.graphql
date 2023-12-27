@@ -1,3 +1,10 @@
+type Current {
+  interval: Int
+  temperature_2m: Float
+  time: DateTime
+}
+
+
 type Daily {
   temperature_2m_max: [Float]
   temperature_2m_min: [Float]
@@ -39,6 +46,8 @@ type HourlyUnits {
 }
 
 type Root {
+  current: Current
+  current_units: CurrentUnits
   daily: Daily
   daily_units: DailyUnits
   elevation: Int
@@ -54,6 +63,7 @@ type Root {
 
 type Query {
   myQuery(
+    current: String
     daily: String
     hourly: String
     latitude: String
