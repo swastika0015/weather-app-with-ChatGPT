@@ -1,9 +1,18 @@
 type Current {
   interval: Int
+  rain: Int
+  snowfall: Int
   temperature_2m: Float
   time: DateTime
 }
 
+type CurrentUnits {
+  interval: String
+  rain: String
+  snowfall: String
+  temperature_2m: String
+  time: String
+}
 
 type Daily {
   temperature_2m_max: [Float]

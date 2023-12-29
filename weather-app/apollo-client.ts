@@ -1,12 +1,12 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { constants } from "buffer";
 
-let client: ApolloClient<any> | null= null;
+let client: ApolloClient<any> | null = null;
 
 export const getClient = () => {
     const client = new ApolloClient ({
         uri : process.env.API_URL,
-        cache: new InMemoryCache();
+        cache: new InMemoryCache(),
         headers: {
             Authorization: `apikey ${process.env.NEXT_PUBLIC_STEPZEN_API_KEY}`,
         },

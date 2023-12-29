@@ -1,4 +1,6 @@
 interface Current {
+    rain: number;
+    snowfall: number;
     interval: number;
     temperature_2m: number;
     time: string;
@@ -6,10 +8,11 @@ interface Current {
 
 interface CurrentUnits {
     interval: string;
+    rain: string;
+    snowfall: string;
     temperature_2m: string;
     time: string;
 }
-
 interface Daily {
     temperature_2m_max: [number];
     temperature_2m_min: [number];
@@ -65,4 +68,5 @@ interface Root {
     timezone_abbreviation: string;
     utc_offset_seconds: number;
 }
+
 
