@@ -1,76 +1,110 @@
 import { gql } from "@apollo/client";
-
-
+//Needs to match index.graphql queries EXACTLY (daily, hourly, Root, etc...)
 const fetchWeatherQuery = gql`
-  query MyQuery (
-    $current: String 
-    $daily: String = "weather_code,temperature_2m,temperature_2m_max, temperature_2m_min, uv_index, uv_index_clear_sky,rain,snowfall", 
-    $hourly: String =  "weather_code,temperature_2m,temperature_2m_max, temperature_2m_min, uv_index, uv_index_clear_sky,rain,snowfall", 
-    $longitude: String!
+  query MyQuery(
+    $current_weather: String
+    $daily: String = "weathercode,precipitation_probability_max,precipitation_sum,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,uv_index_max,uv_index_clear_sky_max"
+    $hourly: String = "temperature_2m,visibility,relativehumidity_2m,apparent_temperature,precipitation_probability,precipitation,rain,showers,snowfall,snow_depth,windgusts_10m,uv_index,uv_index_clear_sky"
     $latitude: String!
-  )  {
+    $longitude: String!
+    $timezone: String!
+    $temperature_unit: String!
+    $forecast_days: String!
+    $windspeed_unit: String!
+  ) {
     myQuery(
-      current: $current
+      current_weather: $current_weather
       daily: $daily
-      hourly: $hourly 
-      longitude: $longitude 
-      latitude:$latitude 
-    ) 
-    {
-      current {
-        interval
-        rain
-        snowfall
-        temperature_2m
-        time
-      }
-      current_units {
-        interval
-        snowfall
-        rain
-        temperature_2m
-        time
-      }
-      daily {
-        temperature_2m_max
-        temperature_2m_min
-        time
-        weather_code
-      }
+      hourly: $hourly
+      latitude: $latitude
+      longitude: $longitude
+      timezone: $timezone
+      temperature_unit: $temperature_unit
+      forecast_days: $forecast_days
+      windspeed_unit: $windspeed_unit
+
+    ) {
       elevation
       generationtime_ms
-      daily_units {
-        temperature_2m_max
-        temperature_2m_min
-        time
-        weather_code
-      }
       latitude
       longitude
       timezone
+      timezone_abbreviation
+      utc_offset_seconds
+      temperature_unit
+      windspeed_unit
+      forecast_days
       hourly {
-        dew_point_2m
-        wind_speed_10m
-        uv_index_clear_sky
-        uv_index
-        time
-        temperature_2m
-        snowfall
-        showers
-        relative_humidity_2m
+        apparent_temperature
+        precipitation
+        precipitation_probability
         rain
+        relativehumidity_2m
+        showers
+        snow_depth
+        snowfall
+        temperature_2m
+        time
+        uv_index
+        uv_index_clear_sky
+        windgusts_10m
+        visibility
+        weathercode
       }
       hourly_units {
-        wind_speed_10m
-        uv_index_clear_sky
-        time
-        temperature_2m
-        uv_index
-        snowfall
-        relative_humidity_2m
-        showers
+        apparent_temperature
+        precipitation
+        precipitation_probability
         rain
-        dew_point_2m
+        relativehumidity_2m
+        showers
+        snow_depth
+        snowfall
+        temperature_2m
+        time
+        uv_index
+        uv_index_clear_sky
+        windgusts_10m
+        visibility
+        weathercode        
+      }
+      daily_units {
+        precipitation_probability_max
+        precipitation_sum
+        rain_sum        
+        apparent_temperature_max
+        apparent_temperature_min
+        sunrise
+        sunset
+        temperature_2m_max
+        temperature_2m_min
+        time
+        uv_index_clear_sky_max
+        uv_index_max
+        weathercode
+      }
+      daily {
+        precipitation_probability_max
+        precipitation_sum
+        rain_sum        
+        apparent_temperature_max
+        apparent_temperature_min
+        sunrise
+        sunset
+        temperature_2m_max
+        temperature_2m_min
+        time
+        uv_index_clear_sky_max
+        uv_index_max
+        weathercode
+      }
+      current_weather {
+        is_day
+        temperature
+        time
+        weathercode
+        winddirection
+        windspeed
       }
     }
   }
