@@ -75,7 +75,7 @@ async function WeatherPage ({params : {city, lat, long } }: Props) {
                 />
                 {Number(results.daily.uv_index_max[0].toFixed(1)) > 9 && (
                   <CalloutCard
-                    message={"The UV is high today, be sure to wear SPF!"}
+                    message={"The UV is high today."}
                     warning
                   />
                 )}              
