@@ -30,5 +30,31 @@ function TempChart({ results }: Props) {
 
   const dataFormatter = (number: number) => `${number}`;
 
+  const dataFormatter = (number: number) => {
+    const hours = Math.floor(number);
+    const minutes = Math.round((number - hours) * 60);
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+  };
+
+  return (
+    <div>
+      <Card>
+        <Title>Temperature &amp; UV Index</Title>
+        <AreaChart
+          className="mt-6"
+          data={data}
+          showLegend
+          index="time" // related in data variable
+          categories={["Feels like", "Temperature (F)", "UV Index"]}
+          colors={["amber", "orange", "yellow"]}
+          minValue={1}
+          valueFormatter={dataFormatter}
+          yAxisWidth={50}
+        />
+      </Card>
+
+    </div>
+  );
+}
 
 export default TempChart;
