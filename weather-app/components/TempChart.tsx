@@ -30,11 +30,11 @@ function TempChart({ results }: Props) {
 
   const dataFormatter = (number: number) => `${number}`;
 
-  const dataFormatter = (number: number) => {
-    const hours = Math.floor(number);
-    const minutes = Math.round((number - hours) * 60);
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-  };
+//   const dataFormatter = (number: number) => {
+//     const hours = Math.floor(number);
+//     const minutes = Math.round((number - hours) * 60);
+//     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+//   };
 
   return (
     <div>
@@ -44,7 +44,7 @@ function TempChart({ results }: Props) {
           className="mt-6"
           data={data}
           showLegend
-          index="time" // related in data variable
+          index="time" 
           categories={["Feels like", "Temperature (F)", "UV Index"]}
           colors={["amber", "orange", "yellow"]}
           minValue={1}
@@ -52,7 +52,23 @@ function TempChart({ results }: Props) {
           yAxisWidth={50}
         />
       </Card>
-
+      <Card>
+        <Title>Tomorrow&apos;s Temp</Title>
+        <AreaChart
+          className="mt-6"
+          data={data}
+          index="time"
+          categories={[
+            "Tomorrow's Feels like",
+            "Tomorrow's Temperature (F)",
+            "Tomorrow's UV Index",
+          ]}
+          colors={["teal", "sky", "cyan"]}
+          minValue={1}
+          valueFormatter={dataFormatter}
+          yAxisWidth={50}
+        />
+      </Card>
     </div>
   );
 }
